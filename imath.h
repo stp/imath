@@ -61,7 +61,7 @@ typedef struct {
   mp_size   alloc;
   mp_size   used;
   mp_sign   sign;
-} mpz_t, *mp_int;
+} imath_int_value, *mp_int;
 
 static inline mp_digit* MP_DIGITS(mp_int Z) { return Z->digits; }
 static inline mp_size   MP_ALLOC(mp_int Z)  { return Z->alloc; }
@@ -87,17 +87,6 @@ extern const mp_result MP_MINERR;
 #define MP_MIN_RADIX   2
 #define MP_MAX_RADIX   36
 
-/** Sets the default number of digits allocated to an `mp_int` constructed by
-    `mp_int_init_size()` with `prec == 0`. Allocations are rounded up to
-    multiples of this value. `MP_DEFAULT_PREC` is the default value. Requires
-    `ndigits > 0`. */
-void mp_int_default_precision(mp_size ndigits);
-
-/** Sets the number of digits below which multiplication will use the standard
-    quadratic "schoolbook" multiplication algorithm rather than Karatsuba-Ofman.
-    Requires `ndigits >= sizeof(mp_word)`. */
-void mp_int_multiply_threshold(mp_size ndigits);
-
 /** A sign indicating a (strictly) negative value. */
 extern const mp_sign MP_NEG;
 
@@ -114,7 +103,7 @@ static inline bool mp_int_is_even(mp_int z) { return (z->digits[0] & 1) == 0; }
     cannot fail unless `z == NULL`. */
 mp_result mp_int_init(mp_int z);
 
-/** Allocates a fresh zero-valued `mpz_t` on the heap, returning NULL in case
+/** Allocates a fresh zero-valued `imath_int_value` on the heap, returning NULL in case
     of error. The only possible error is out-of-memory. */
 mp_int mp_int_alloc(void);
 

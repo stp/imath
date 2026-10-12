@@ -36,9 +36,9 @@ extern "C" {
 #endif
 
 typedef struct {
-  mpz_t   num;    /* Numerator         */
-  mpz_t   den;    /* Denominator, <> 0 */
-} mpq_t, *mp_rat;
+  imath_int_value   num;    /* Numerator         */
+  imath_int_value   den;    /* Denominator, <> 0 */
+} imath_rat_value, *mp_rat;
 
 /* Return a pointer to the numerator. */
 static inline mp_int MP_NUMER_P(mp_rat Q) { return &(Q->num); }
@@ -58,7 +58,7 @@ typedef enum {
     cannot fail unless `r` is NULL. */
 mp_result mp_rat_init(mp_rat r);
 
-/** Allocates a fresh zero-valued `mpq_t` on the heap, returning NULL in case
+/** Allocates a fresh zero-valued `imath_rat_value` on the heap, returning NULL in case
     of error. The only possible error is out-of-memory. */
 mp_rat mp_rat_alloc(void);
 
